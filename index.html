@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Psychoanalyst - روان‌کاو هوشمند</title>
+    <!-- استفاده از Tailwind CSS برای استایل‌دهی سریع -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet">
     
@@ -88,32 +89,38 @@
 </head>
 <body class="bg-gray-900 text-gray-100 flex items-center justify-center min-h-screen p-0 sm:p-4">
 
+    <!-- 
+      ============================================
+      بخش ۱: صفحه ورود API Key
+      ============================================
+    -->
     <div id="api-key-screen" class="w-full max-w-md bg-gray-800 rounded-none sm:rounded-2xl shadow-2xl flex flex-col items-center p-6 sm:p-10 space-y-6 animate-fade-in h-screen sm:h-auto">
         <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-white">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 9.75a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 0 1 .778-.332 48.294 48.294 0 0 0 5.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
             </svg>
         </div>
-        
         <h1 class="text-3xl font-bold text-center text-white">روان‌کاو هوشمند</h1>
         <p class="text-center text-gray-300 text-base">
             برای شروع، لطفاً Gemini API Key خود را وارد کنید.
         </p>
-        
         <div class="w-full space-y-2 pt-4">
             <label for="api-key-input" class="block text-sm font-medium text-gray-300 px-1">Gemini API Key</label>
             <input type="password" id="api-key-input" class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-left text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="AIza..." dir="ltr">
         </div>
-        
         <button id="api-key-submit" class="w-full px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-0.5">
             شروع
         </button>
-        
         <p class="text-xs text-gray-500 text-center" dir="ltr">
             Your API key is stored only in your browser.
         </p>
     </div>
 
+    <!-- 
+      ============================================
+      بخش ۲: صفحه ورود موضوع جلسه
+      ============================================
+    -->
     <div id="topic-screen" class="w-full max-w-lg bg-gray-800 rounded-none sm:rounded-2xl shadow-2xl flex flex-col p-6 sm:p-10 space-y-6 animate-fade-in h-screen sm:h-auto hidden">
         <h1 class="text-3xl font-bold text-center text-white">موضوع جلسه</h1>
         <p class="text-center text-gray-300">
@@ -143,8 +150,14 @@
         </label>
     </div>
 
+    <!-- 
+      ============================================
+      بخش ۳: صفحه اصلی چت
+      ============================================
+    -->
     <div id="main-chat-screen" class="w-full h-screen sm:h-[95vh] sm:max-w-7xl bg-gray-800 rounded-none sm:rounded-2xl shadow-2xl flex flex-col hidden overflow-hidden">
         
+        <!-- هدر چت -->
         <header class="flex-shrink-0 p-4 bg-gray-900/50 backdrop-blur-sm border-b border-gray-700 flex items-center justify-between z-30">
             <div class="flex items-center space-x-3 space-x-reverse">
                 <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
@@ -164,8 +177,10 @@
             </div>
         </header>
 
+        <!-- بدنه اصلی چت و سایدبار -->
         <div class="flex-grow flex h-full overflow-hidden relative">
             
+            <!-- سایدبار بینش‌ها (Insights) -->
             <aside id="insights-sidebar" class="w-full md:w-1/3 lg:w-1/4 flex-shrink-0 bg-gray-800/95 md:bg-gray-800 backdrop-blur-sm md:backdrop-blur-none border-l border-gray-700 p-4 flex-col md:flex absolute md:relative h-full z-20 -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out">
                 <div class="flex items-center justify-between mb-4">
                     <h2 class="text-xl font-bold text-white">بینش‌های جلسه</h2>
@@ -178,6 +193,7 @@
                 </div>
             </aside>
 
+            <!-- ستون اصلی چت -->
             <main class="flex-grow flex flex-col h-full overflow-hidden">
                 <div id="chat-container" class="flex-grow p-4 sm:p-6 space-y-6 overflow-y-auto">
                     </div>
@@ -203,6 +219,12 @@
         </div>
     </div>
 
+    <!-- 
+      ============================================
+      بخش ۴: المان‌های شناور (Overlays)
+      ============================================
+    -->
+
     <div id="loading-overlay" class="fixed inset-0 bg-gray-900/80 backdrop-blur-md flex items-center justify-center z-50 hidden">
         <div class="flex flex-col items-center space-y-4">
             <div class="spinner !w-16 !h-16 !border-4"></div>
@@ -215,6 +237,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 flex-shrink-0"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-1.125m-1.5 1.125a6.01 6.01 0 0 1-1.5-1.125m1.5 1.125v-1.5A2.25 2.25 0 0 1 13.5 9.75h.5a2.25 2.25 0 0 1 2.25 2.25v1.5m-3 0h3m-3 0h-1.5a2.25 2.25 0 0 0-2.25 2.25v1.5A2.25 2.25 0 0 0 9.75 18h4.5A2.25 2.25 0 0 0 16.5 15.75v-1.5a2.25 2.25 0 0 0-2.25-2.25h-.5A2.25 2.25 0 0 0 12 9.75v1.5m0 0v-1.5m0 1.5v5.25m0 0v-5.25" /></svg>
             <div>
                 <h3 class="font-bold">بینش جدید!</h3>
+                <!-- *** تغییر ***: اینجا متن نوتیفیکیشن قرار می‌گیرد (فقط عنوان) -->
                 <p id="insight-toast-text" class="text-sm"></p>
             </div>
             <button id="insight-toast-close" class="ml-auto p-1 -m-1 rounded-full hover:bg-purple-700">
@@ -224,17 +247,22 @@
     </div>
 
 
+    <!-- 
+      ============================================
+      بخش ۵: اسکریپت اصلی برنامه
+      ============================================
+    -->
     <script type="module">
         // -------------------------------------------
         // State Management (مدیریت وضعیت برنامه)
         // -------------------------------------------
         let apiKey = localStorage.getItem('gemini_api_key') || '';
-        let chatHistory = []; // تاریخچه کامل چت برای ارسال به Gemini
-        let insights = []; // لیست بینش‌های استخراج شده
-        let currentPersona = ''; // نام نقش (مثل جردن پیترسون)
-        let systemPrompt = ''; // پرامپت سیستمی برای نقش
-        let audioContext = null; // برای پخش صدای TTS
-        let currentPlayingAudio = null; // برای متوقف کردن صدای قبلی
+        let chatHistory = []; 
+        let insights = []; // *** تغییر ***: اکنون آرایه‌ای از آبجکت‌ها خواهد بود: {title, description}
+        let currentPersona = ''; 
+        let systemPrompt = ''; 
+        let audioContext = null; 
+        let currentPlayingAudio = null; 
         
         let messageStates = {}; 
 
@@ -384,8 +412,9 @@
             alert(`خطا: ${message}`);
         }
         
-        function showInsightToast(text) {
-            elements.insightToastText.textContent = text;
+        // *** تغییر ***: اکنون فقط عنوان را به عنوان متن می‌گیرد
+        function showInsightToast(title) {
+            elements.insightToastText.textContent = title; // نمایش عنوان
             elements.insightToast.classList.remove('hidden', 'toast-slide-out');
             elements.insightToast.classList.add('toast-slide-in');
             setTimeout(hideInsightToast, 6000);
@@ -495,18 +524,17 @@
             }
         }
         
-        /**
-         * منطق پردازش پاسخ مدل، برای استفاده در ارسال و بازتولید
-         */
+        
         async function processModelResponse(userText) {
-            // مخفی کردن دکمه‌های بازتولید قدیمی
             document.querySelectorAll('.regenerate-button').forEach(btn => btn.classList.add('hidden'));
 
-            const [modelResponse, insight] = await Promise.all([
+            // *** تغییر ***: اکنون یک آبجکت JSON برمی‌گرداند
+            const [modelResponse, insightJSON] = await Promise.all([
                 getGeminiResponse(),
-                getInsight(userText)
+                getInsight(userText) // این تابع اکنون JSON برمی‌گرداند
             ]);
-
+            
+            // پردازش پاسخ اصلی
             const modelMessage = {
                 id: crypto.randomUUID(),
                 role: 'model',
@@ -524,10 +552,24 @@
             
             renderMessage(modelMessage);
 
-            if (insight && insight !== 'NO_INSIGHT' && insight.length > 10) {
-                insights.push(insight);
-                renderNewInsight(insight);
-                showInsightToast(insight);
+            // *** تغییر ***: پردازش بینش بر اساس آبجکت JSON
+            try {
+                const insight = JSON.parse(insightJSON);
+                
+                if (insight && insight.title !== 'NO_INSIGHT' && insight.title && insight.description) {
+                    insights.push(insight); // ذخیره آبجکت کامل
+                    renderNewInsight(insight); // رندر آبجکت کامل
+                    showInsightToast(insight.title); // نمایش فقط عنوان در نوتیفیکیشن
+                }
+            } catch (e) {
+                console.error("Failed to parse insight JSON:", insightJSON, e);
+                // اگر JSON خراب بود، حداقل آن را به عنوان متن ساده ذخیره می‌کنیم (برای جلوگیری از شکست کامل)
+                if (insightJSON && insightJSON !== 'NO_INSIGHT' && insightJSON.length > 10) {
+                     const fallbackInsight = { title: "بینش (خطای فرمت)", description: insightJSON };
+                     insights.push(fallbackInsight);
+                     renderNewInsight(fallbackInsight);
+                     showInsightToast(fallbackInsight.title);
+                }
             }
         }
 
@@ -652,9 +694,7 @@
             }
         }
         
-        /**
-         * منطق کلیک دکمه کپی
-         */
+        
         async function handleCopyClick(button, textEl) {
             const textToCopy = textEl.textContent;
             try {
@@ -687,9 +727,7 @@
             }
         }
         
-        /**
-         * منطق کلیک دکمه بازتولید
-         */
+        
         async function handleRegenerateClick(button, messageId, messageEl) {
             if (chatHistory[chatHistory.length - 1].role !== 'model' || 
                 chatHistory[chatHistory.length - 1].parts[0].text !== messageStates[messageId]?.text) {
@@ -754,6 +792,17 @@
                     if (result.candidates?.[0]?.finishReason === 'RECITATION') {
                          throw new Error("پاسخ به دلیل محدودیت‌های استنادی بلاک شد.");
                     }
+                    
+                    // *** تغییر ***: برای `getInsight` که JSON برمی‌گرداند، این شرط متفاوت است
+                    if (payload.generationConfig?.responseMimeType === "application/json") {
+                         if (!result.candidates?.[0]?.content?.parts?.[0]?.text) {
+                             throw new Error("پاسخ JSON معتبری دریافت نشد.");
+                         }
+                         // برای JSON، ما متن را مستقیماً برمی‌گردانیم تا بعداً پارس شود
+                         return result.candidates[0].content.parts[0].text;
+                    }
+                    
+                    // منطق قبلی برای پاسخ‌های متنی استاندارد
                     if (!result.candidates?.[0]?.content?.parts?.[0]?.text) {
                         if (result.candidates?.[0]?.finishReason === 'STOP' && result.candidates?.[0]?.content?.parts) {
                             return ""; // پاسخ خالی اما موفق
@@ -762,7 +811,7 @@
                         throw new Error("پاسخ دریافتی ساختار معتبری نداشت.");
                     }
                     
-                    return result;
+                    return result.candidates[0].content.parts[0].text; // بازگشت متن برای `getGeminiResponse`
 
                 } catch (error) {
                     console.error(`Attempt ${i + 1} failed:`, error.message);
@@ -775,9 +824,7 @@
             throw new Error("عملیات پس از چند تلاش ناموفق بود.");
         }
 
-        /**
-         * ۱. تعیین نقش (Persona)
-         */
+        
         async function generatePersona(topic) {
             const personaSystemPrompt = `You are a 'Persona Router'. A user will provide a topic. Your job is to select the *single* most relevant expert persona from this list: Dr. Andrew Huberman (neuroscience, performance, focus, sleep), Dr. Jordan Peterson (philosophy, life rules, responsibility, meaning), Esther Perel (relationships, intimacy, infidelity, couples), Dr. Gabor Maté (trauma, addiction, stress, childhood development), Brené Brown (vulnerability, shame, courage, leadership), Dr. Nicole LePera (holistic psychology, self-healing, boundaries, inner child), or 'Compassionate Therapist' (for general support, active listening, or topics not covered by others).
             You MUST respond *only* with a JSON object. The JSON must have three keys:
@@ -798,8 +845,8 @@
                 }
             };
             
-            const result = await callGeminiApi('gemini-2.5-flash-preview-09-2025', payload);
-            const jsonText = result.candidates[0].content.parts[0].text;
+            // `callGeminiApi` اکنون متن JSON را برمی‌گرداند
+            const jsonText = await callGeminiApi('gemini-2.5-flash-preview-09-2025', payload);
             
             try {
                 return JSON.parse(jsonText);
@@ -809,9 +856,7 @@
             }
         }
 
-        /**
-         * ۲. دریافت پاسخ اصلی چت
-         */
+        
         async function getGeminiResponse() {
             const mainSystemPrompt = systemPrompt || "You are a helpful assistant."; 
             
@@ -824,19 +869,32 @@
                 }
             };
             
-            const result = await callGeminiApi('gemini-2.5-flash-preview-09-2025', payload);
-            return result.candidates[0].content.parts[0].text;
+            // `callGeminiApi` متن پاسخ را برمی‌گرداند
+            return await callGeminiApi('gemini-2.5-flash-preview-09-2025', payload);
         }
 
+        // *** شروع تغییر ***
+        // تابع `getInsight` اکنون بازنویسی شده است
+        
         /**
-         * ۳. استخراج بینش (Insight)
+         * ۳. استخراج بینش (Insight) - اکنون JSON برمی‌گرداند
          */
         async function getInsight(userText) {
-            const insightSystemPrompt = `You are a 'Psychoanalytic Insight Extractor'. You will receive the *entire chat history* (for context) and the *user's latest message* (for analysis). Your job is to identify *one* significant new psychological insight, cognitive distortion, recurring pattern, or key underlying theme in the user's *latest* message, based on the conversation history.
-            - The insight MUST be in English.
-            - The insight should be concise (1-2 sentences).
-            - If no new, significant, or deep insight is found in the *latest* message, you MUST respond with the exact string 'NO_INSIGHT'.
-            - Do not just repeat what the user said. Find the *underlying* meaning or pattern.`;
+            const insightSystemPrompt = `You are a 'Psychoanalytic Insight Extractor'. You will receive the *entire chat history* (for context) and the *user's latest message* (for analysis). Your job is to identify *one* significant new psychological insight, cognitive distortion, recurring pattern, or key underlying theme in the user's *latest* message.
+            
+            Your response MUST be a single JSON object.
+            
+            1.  If you find a new, significant insight (not just repeating the user), respond with:
+                {
+                  "title": (string) "A 2-4 word concise title/tag for this insight in English (e.g., 'Fear of Abandonment', 'Perfectionism Pattern', 'Social Anxiety').",
+                  "description": (string) "A 1-2 sentence description of the insight, explaining *why* it's relevant, in English."
+                }
+            
+            2.  If no new, significant, or deep insight is found in the *latest* message, you MUST respond with this exact JSON:
+                {
+                  "title": "NO_INSIGHT",
+                  "description": ""
+                }`;
 
             const historyContext = chatHistory.slice(-6).map(msg => `${msg.role}: ${msg.parts[0].text}`).join('\n');
             const prompt = `---
@@ -848,29 +906,31 @@
             ${userText}
             ---
             
-            Extract Insight:`;
+            Extract Insight (JSON only):`;
 
             const payload = {
                 contents: [{ parts: [{ text: prompt }] }],
                 systemInstruction: { parts: [{ text: insightSystemPrompt }] },
                 generationConfig: {
+                    responseMimeType: "application/json", // درخواست پاسخ JSON
                     temperature: 0.2,
-                    maxOutputTokens: 100,
+                    maxOutputTokens: 250,
                 }
             };
 
             try {
-                const result = await callGeminiApi('gemini-2.5-flash-preview-09-2025', payload);
-                return result.candidates[0].content.parts[0].text.trim();
+                // `callGeminiApi` متن JSON را برمی‌گرداند
+                const jsonText = await callGeminiApi('gemini-2.5-flash-preview-09-2025', payload);
+                return jsonText;
             } catch (error) {
                 console.error("Error getting insight:", error);
-                return 'NO_INSIGHT';
+                return '{"title": "NO_INSIGHT", "description": "Error in generation."}';
             }
         }
+        
+        // *** پایان تغییر ***
 
-        /**
-         * ۴. ترجمه متن
-         */
+        
         async function getTranslation(textToTranslate, direction = 'en-to-fa') {
             
             const translateSystemPrompt_EN_to_FA = `You are a professional, expert translator specializing in psychological and therapeutic content. Your task is to translate from English to Persian, but you are not a literal machine. You must act like an editor who 'improves' the text for a native Persian-speaking audience.
@@ -894,14 +954,11 @@ Your translation MUST follow these rules:
                 }
             };
             
-            const result = await callGeminiApi('gemini-2.5-flash-preview-09-2025', payload);
-            return result.candidates[0].content.parts[0].text.replace(/"/g, ''); // حذف "" احتمالی
+            return await callGeminiApi('gemini-2.5-flash-preview-09-2025', payload);
         }
 
 
-        /**
-         * ۵. دریافت صدای TTS
-         */
+        
         async function getAndPlayTTS(text, messageId) {
             if (!audioContext) {
                 showError("AudioContext راه‌اندازی نشده است.");
@@ -1042,8 +1099,6 @@ Your translation MUST follow these rules:
             elements.chatContainer.scrollTop = elements.chatContainer.scrollHeight;
         }
 
-        // --- توابع کمکی جدید برای آیکون‌ها ---
-
         function getTranslateButtonIcon(lang) {
             if (lang === 'fa') { // دکمه نمایش فارسی
                 return `
@@ -1079,8 +1134,6 @@ Your translation MUST follow these rules:
             `;
         }
         
-        // --- پایان توابع آیکون ---
-
         function renderErrorMessage(text) {
              const errorHtml = `
                 <div class="flex justify-start w-full animate-fade-in">
@@ -1095,27 +1148,50 @@ Your translation MUST follow these rules:
             elements.chatContainer.scrollTop = elements.chatContainer.scrollHeight;
         }
 
-        function renderNewInsight(insightText) {
+        // *** شروع تغییر ***
+        // تابع `renderNewInsight` اکنون آبجکت می‌پذیرد و سازگار با عقب است
+        
+        /**
+         * رندر کردن بینش در سایدبار
+         * @param {object | string} insight - آبجکت بینش ({title, description}) یا متن ساده (برای سازگاری)
+         */
+        function renderNewInsight(insight) {
             const placeholder = elements.insightsContainer.querySelector('p.text-gray-400');
             if (placeholder) placeholder.remove();
 
-            const insightHtml = `
+            let insightHtml = '';
+            
+            // بررسی سازگاری با فرمت قدیمی (رشته)
+            if (typeof insight === 'string') {
+                insightHtml = `
                 <div class="bg-gray-700 p-3 rounded-lg shadow animate-fade-in">
-                    <p class="text-gray-200 text-sm" dir="auto">${insightText}</p>
+                    <p class="text-gray-200 text-sm" dir="auto">${insight}</p>
                 </div>
-            `;
-            elements.insightsContainer.insertAdjacentHTML('beforeend', insightHtml);
-            elements.insightsContainer.scrollTop = elements.insightsContainer.scrollHeight;
+                `;
+            } 
+            // فرمت جدید (آبجکت)
+            else if (insight && insight.title && insight.description) {
+                 insightHtml = `
+                <div class="bg-gray-700 p-3 rounded-lg shadow animate-fade-in">
+                    <strong class="text-purple-300 text-sm block mb-1" dir="auto">${insight.title}</strong>
+                    <p class="text-gray-200 text-sm" dir="auto">${insight.description}</p>
+                </div>
+                `;
+            }
+
+            if (insightHtml) {
+                elements.insightsContainer.insertAdjacentHTML('beforeend', insightHtml);
+                elements.insightsContainer.scrollTop = elements.insightsContainer.scrollHeight;
+            }
         }
+        
+        // *** پایان تغییر ***
         
 
         // -------------------------------------------
         // Import / Export (ذخیره و بارگذاری)
         // -------------------------------------------
 
-        // *** شروع تغییر ***
-        // تابع `loadSessionData` اکنون `async` است و منطق جدیدی دارد
-        
         /**
          * بارگذاری داده‌های جلسه، عدم نمایش چت قبلی، و دریافت پیام خوشامدگویی جدید
          */
@@ -1136,7 +1212,7 @@ Your translation MUST follow these rules:
 
                 // ۳. رندر بینش‌های قبلی
                 if (insights.length > 0) {
-                    insights.forEach(renderNewInsight);
+                    insights.forEach(renderNewInsight); // این تابع اکنون سازگار است
                 } else {
                     elements.insightsContainer.innerHTML = '<p class="text-gray-400 text-sm">هنوز بینشی استخراج نشده است.</p>';
                 }
@@ -1187,19 +1263,17 @@ Your translation MUST follow these rules:
                 hideLoading(elements.sendButton, elements.chatLoader);
             }
         }
-        
-        // *** پایان تغییر ***
 
 
         function handleExportSession() {
             try {
                 const sessionData = {
-                    version: 4.0, // ورژن را به روز کردیم
+                    version: 5.0, // *** تغییر ***: ورژن را به روز کردیم
                     createdAt: new Date().toISOString(),
                     persona: currentPersona,
                     systemPrompt: systemPrompt,
                     chatHistory: chatHistory, 
-                    insights: insights
+                    insights: insights // اکنون آرایه‌ای از آبجکت‌ها را ذخیره می‌کند
                 };
                 
                 const jsonString = JSON.stringify(sessionData, null, 2);
@@ -1219,9 +1293,6 @@ Your translation MUST follow these rules:
                 showError("خطا در ذخیره‌سازی جلسه.");
             }
         }
-
-        // *** شروع تغییر ***
-        // `reader.onload` اکنون `async` است و منتظر `loadSessionData` می‌ماند
         
         function handleImportSession(event) {
             const file = event.target.files[0];
@@ -1229,7 +1300,6 @@ Your translation MUST follow these rules:
 
             const reader = new FileReader();
             
-            // این تابع اکنون async است
             reader.onload = async (e) => {
                 try {
                     const data = JSON.parse(e.target.result);
@@ -1239,22 +1309,17 @@ Your translation MUST follow these rules:
                     elements.loadingOverlay.classList.remove('hidden');
                     elements.loadingText.textContent = "در حال بارگذاری جلسه...";
                     
-                    // منتظر می‌مانیم تا loadSessionData (شامل تماس API) تمام شود
                     await loadSessionData(data);
                     
-                    // loadSessionData خودش لودر را مخفی می‌کند
-
                 } catch (error) {
                     showError(`خطا در خواندن فایل: ${error.message}`);
-                    elements.loadingOverlay.classList.add('hidden'); // اطمینان از مخفی شدن لودر در صورت خطا
+                    elements.loadingOverlay.classList.add('hidden'); 
                 } finally {
                     event.target.value = null;
                 }
             };
             reader.readAsText(file);
         }
-        
-        // *** پایان تغییر ***
 
         // -------------------------------------------
         // Utility Functions (توابع کمکی)
