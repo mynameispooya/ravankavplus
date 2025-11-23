@@ -10,10 +10,9 @@
     <style>
         body {
             font-family: 'Vazirmatn', 'Inter', sans-serif;
-            overscroll-behavior-y: none; /* Zapobiega efektowi "odbicia" na mobilu */
+            overscroll-behavior-y: none;
         }
         
-        /* Płynne przewijanie czatu */
         #chat-container::-webkit-scrollbar {
             width: 6px;
         }
@@ -27,7 +26,6 @@
 
         .hidden { display: none !important; }
         
-        /* Animacje */
         @keyframes slideInUp { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         @keyframes slideOutDown { from { transform: translateY(0); opacity: 1; } to { transform: translateY(100%); opacity: 0; } }
         .toast-slide-in { animation: slideInUp 0.5s ease-out forwards; }
@@ -37,7 +35,6 @@
             @apply p-1.5 rounded-full text-gray-400 hover:text-gray-200 hover:bg-gray-700 transition-all duration-200;
         }
         
-        /* Spinner */
         .spinner {
             border: 3px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
@@ -48,11 +45,9 @@
         }
         @keyframes spin { to { transform: rotate(360deg); } }
 
-        /* Fade In */
         @keyframes fadeIn { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }
         .animate-fade-in { animation: fadeIn 0.3s ease-out forwards; }
 
-        /* Custom Input Styling to prevent mobile glitches */
         .custom-input {
             -webkit-appearance: none;
             appearance: none;
@@ -64,24 +59,16 @@
     <div id="api-key-screen" class="w-full max-w-md p-4 flex-col items-center justify-center min-h-screen sm:min-h-0">
         <div class="bg-gray-800 rounded-2xl shadow-2xl flex flex-col items-center p-6 sm:p-10 space-y-6 animate-fade-in w-full">
             <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg shrink-0">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-white">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 9.75a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 0 1 .778-.332 48.294 48.294 0 0 0 5.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
-                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-white"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 9.75a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 0 1 .778-.332 48.294 48.294 0 0 0 5.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" /></svg>
             </div>
             <h1 class="text-2xl sm:text-3xl font-bold text-center text-white">روان‌کاو هوشمند</h1>
-            <p class="text-center text-gray-300 text-sm sm:text-base leading-relaxed">
-                برای شروع، لطفاً Gemini API Key خود را وارد کنید.
-            </p>
+            <p class="text-center text-gray-300 text-sm sm:text-base leading-relaxed">برای شروع، لطفاً Gemini API Key خود را وارد کنید.</p>
             <div class="w-full space-y-2 pt-2">
                 <label for="api-key-input" class="block text-sm font-medium text-gray-300 px-1">Gemini API Key</label>
                 <input type="password" id="api-key-input" class="custom-input w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-left text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors" placeholder="AIza..." dir="ltr">
             </div>
-            <button id="api-key-submit" class="w-full px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-0.5 active:translate-y-0">
-                شروع
-            </button>
-            <p class="text-xs text-gray-500 text-center" dir="ltr">
-                Your API key is stored only in your browser.
-            </p>
+            <button id="api-key-submit" class="w-full px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-0.5 active:translate-y-0">شروع</button>
+            <p class="text-xs text-gray-500 text-center" dir="ltr">Your API key is stored only in your browser.</p>
         </div>
     </div>
 
@@ -93,26 +80,18 @@
                 <br class="hidden sm:block">
                 هوش مصنوعی بر اساس این موضوع، نقش روان‌کاو مناسب را انتخاب خواهد کرد.
             </p>
-            
             <div class="space-y-3 w-full">
                 <label for="topic-input" class="block text-sm font-medium text-gray-300 px-1">موضوع (Topic)</label>
                 <input type="text" id="topic-input" class="custom-input w-full px-4 py-3.5 bg-gray-900 border border-gray-700 rounded-xl text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all" placeholder="مثال: استرس، روابط..." autocomplete="off">
             </div>
-            
             <button id="topic-submit" class="w-full px-4 py-3.5 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-xl shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center space-x-2 space-x-reverse h-auto min-h-[50px]">
                 <span id="topic-submit-text">شروع جلسه و تعیین نقش</span>
                 <div id="topic-loader" class="spinner hidden"></div>
             </button>
-            
             <div class="relative py-2">
-                <div class="absolute inset-0 flex items-center" aria-hidden="true">
-                    <div class="w-full border-t border-gray-600"></div>
-                </div>
-                <div class="relative flex justify-center">
-                    <span class="bg-gray-800 px-3 text-sm text-gray-400">یا</span>
-                </div>
+                <div class="absolute inset-0 flex items-center" aria-hidden="true"><div class="w-full border-t border-gray-600"></div></div>
+                <div class="relative flex justify-center"><span class="bg-gray-800 px-3 text-sm text-gray-400">یا</span></div>
             </div>
-            
             <label for="import-input" class="w-full text-center cursor-pointer px-4 py-3 bg-gray-700 hover:bg-gray-600 text-white font-medium rounded-xl transition duration-200 border border-gray-600 hover:border-gray-500">
                 بارگذاری جلسه قبلی (.json)
                 <input type="file" id="import-input" class="hidden" accept=".json">
@@ -121,13 +100,10 @@
     </div>
 
     <div id="main-chat-screen" class="w-full h-[100dvh] sm:h-[95vh] sm:max-w-7xl bg-gray-800 rounded-none sm:rounded-2xl shadow-2xl flex flex-col hidden overflow-hidden">
-        
         <header class="flex-shrink-0 p-3 sm:p-4 bg-gray-900/90 backdrop-blur-sm border-b border-gray-700 flex items-center justify-between z-30">
             <div class="flex items-center space-x-3 space-x-reverse">
                 <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-green-400 rounded-full animate-pulse shadow-[0_0_10px_rgba(74,222,128,0.5)]"></div>
-                <h1 class="text-base sm:text-lg font-bold text-white truncate max-w-[150px] sm:max-w-md">
-                    <span id="persona-name-display" class="text-yellow-400">...</span>
-                </h1>
+                <h1 class="text-base sm:text-lg font-bold text-white truncate max-w-[150px] sm:max-w-md"><span id="persona-name-display" class="text-yellow-400">...</span></h1>
             </div>
             <div class="flex items-center space-x-2 space-x-reverse">
                 <button id="export-button" class="p-2 sm:px-3 sm:py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg transition duration-200 flex items-center justify-center">
@@ -141,18 +117,13 @@
         </header>
 
         <div class="flex-grow flex h-full overflow-hidden relative">
-            
             <aside id="insights-sidebar" class="w-full md:w-1/3 lg:w-1/4 flex-shrink-0 bg-gray-900/95 md:bg-gray-800/50 backdrop-blur-md md:backdrop-blur-none border-l border-gray-700 p-4 flex-col md:flex absolute md:relative h-full z-40 -translate-x-full md:translate-x-0 transition-transform duration-300 ease-out shadow-2xl md:shadow-none">
                 <div class="flex items-center justify-between mb-4">
                     <h2 class="text-lg font-bold text-white flex items-center">
-                        <span class="bg-purple-500/20 text-purple-300 p-1.5 rounded-lg ml-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-1.125m-1.5 1.125a6.01 6.01 0 0 1-1.5-1.125m1.5 1.125v-1.5A2.25 2.25 0 0 1 13.5 9.75h.5a2.25 2.25 0 0 1 2.25 2.25v1.5m-3 0h3m-3 0h-1.5a2.25 2.25 0 0 0-2.25 2.25v1.5A2.25 2.25 0 0 0 9.75 18h4.5A2.25 2.25 0 0 0 16.5 15.75v-1.5a2.25 2.25 0 0 0-2.25-2.25h-.5A2.25 2.25 0 0 0 12 9.75v1.5m0 0v-1.5m0 1.5v5.25m0 0v-5.25" /></svg>
-                        </span>
+                        <span class="bg-purple-500/20 text-purple-300 p-1.5 rounded-lg ml-2"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-1.125m-1.5 1.125a6.01 6.01 0 0 1-1.5-1.125m1.5 1.125v-1.5A2.25 2.25 0 0 1 13.5 9.75h.5a2.25 2.25 0 0 1 2.25 2.25v1.5m-3 0h3m-3 0h-1.5a2.25 2.25 0 0 0-2.25 2.25v1.5A2.25 2.25 0 0 0 9.75 18h4.5A2.25 2.25 0 0 0 16.5 15.75v-1.5a2.25 2.25 0 0 0-2.25-2.25h-.5A2.25 2.25 0 0 0 12 9.75v1.5m0 0v-1.5m0 1.5v5.25m0 0v-5.25" /></svg></span>
                         بینش‌های جلسه
                     </h2>
-                    <button id="close-insights-btn" class="p-2 rounded-full text-gray-300 hover:bg-gray-700 md:hidden transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
-                    </button>
+                    <button id="close-insights-btn" class="p-2 rounded-full text-gray-300 hover:bg-gray-700 md:hidden transition-colors"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg></button>
                 </div>
                 <div id="insights-container" class="flex-grow overflow-y-auto space-y-3 pr-1 scrollbar-thin">
                     <p class="text-gray-500 text-sm text-center py-10 italic">هنوز بینشی استخراج نشده است.<br>گفتگو را شروع کنید.</p>
@@ -160,27 +131,17 @@
             </aside>
 
             <main class="flex-grow flex flex-col h-full overflow-hidden relative z-0">
-                <div id="chat-container" class="flex-grow p-3 sm:p-6 space-y-6 overflow-y-auto scroll-smooth pb-4">
-                    </div>
-
+                <div id="chat-container" class="flex-grow p-3 sm:p-6 space-y-6 overflow-y-auto scroll-smooth pb-4"></div>
                 <footer class="flex-shrink-0 p-3 sm:p-4 bg-gray-900/90 backdrop-blur-md border-t border-gray-700 z-10">
                     <div class="flex items-end space-x-2 sm:space-x-3 space-x-reverse max-w-4xl mx-auto">
-                        <textarea id="message-input"
-                            class="flex-grow w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-2xl text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none custom-input shadow-inner transition-all text-sm sm:text-base"
-                            placeholder="پیام خود را تایپ کنید..."
-                            rows="1"
-                            style="min-height: 50px; max-height: 150px;"></textarea>
-                        
+                        <textarea id="message-input" class="flex-grow w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-2xl text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none custom-input shadow-inner transition-all text-sm sm:text-base" placeholder="پیام خود را تایپ کنید..." rows="1" style="min-height: 50px; max-height: 150px;"></textarea>
                         <button id="send-button" class="w-12 h-12 flex-shrink-0 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl shadow-lg transition duration-200 transform hover:scale-105 active:scale-95 flex items-center justify-center disabled:opacity-50 disabled:hover:scale-100">
-                            <span id="send-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 rotate-180"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L6 12Z" /></svg>
-                            </span>
+                            <span id="send-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 rotate-180"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L6 12Z" /></svg></span>
                             <div id="chat-loader" class="spinner hidden !w-5 !h-5 !border-2"></div>
                         </button>
                     </div>
                 </footer>
             </main>
-
         </div>
     </div>
 
@@ -193,23 +154,18 @@
 
     <div id="insight-toast" class="fixed bottom-20 sm:bottom-6 right-4 sm:right-6 left-4 sm:left-auto max-w-sm bg-gray-800 border-r-4 border-purple-500 text-white p-4 rounded-lg shadow-2xl z-50 hidden transition-transform duration-300" style="transform: translateY(150%);">
         <div class="flex items-start space-x-3 space-x-reverse">
-            <div class="p-2 bg-purple-500/20 rounded-full flex-shrink-0">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-purple-400"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-1.125m-1.5 1.125a6.01 6.01 0 0 1-1.5-1.125m1.5 1.125v-1.5A2.25 2.25 0 0 1 13.5 9.75h.5a2.25 2.25 0 0 1 2.25 2.25v1.5m-3 0h3m-3 0h-1.5a2.25 2.25 0 0 0-2.25 2.25v1.5A2.25 2.25 0 0 0 9.75 18h4.5A2.25 2.25 0 0 0 16.5 15.75v-1.5a2.25 2.25 0 0 0-2.25-2.25h-.5A2.25 2.25 0 0 0 12 9.75v1.5m0 0v-1.5m0 1.5v5.25m0 0v-5.25" /></svg>
-            </div>
+            <div class="p-2 bg-purple-500/20 rounded-full flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-purple-400"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-1.125m-1.5 1.125a6.01 6.01 0 0 1-1.5-1.125m1.5 1.125v-1.5A2.25 2.25 0 0 1 13.5 9.75h.5a2.25 2.25 0 0 1 2.25 2.25v1.5m-3 0h3m-3 0h-1.5a2.25 2.25 0 0 0-2.25 2.25v1.5A2.25 2.25 0 0 0 9.75 18h4.5A2.25 2.25 0 0 0 16.5 15.75v-1.5a2.25 2.25 0 0 0-2.25-2.25h-.5A2.25 2.25 0 0 0 12 9.75v1.5m0 0v-1.5m0 1.5v5.25m0 0v-5.25" /></svg></div>
             <div class="flex-grow">
                 <h3 class="font-bold text-sm text-purple-200">بینش جدید!</h3>
                 <p id="insight-toast-text" class="text-sm mt-1 text-gray-200 leading-snug"></p>
             </div>
-            <button id="insight-toast-close" class="text-gray-400 hover:text-white transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
-            </button>
+            <button id="insight-toast-close" class="text-gray-400 hover:text-white transition-colors"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg></button>
         </div>
     </div>
 
-
     <script type="module">
         // -------------------------------------------
-        // State Management
+        // State
         // -------------------------------------------
         let apiKey = localStorage.getItem('gemini_api_key') || '';
         let chatHistory = []; 
@@ -217,12 +173,10 @@
         let currentPersona = ''; 
         let systemPrompt = ''; 
         let audioContext = null; 
-        let currentPlayingAudio = null; 
-        
         let messageStates = {}; 
 
         // -------------------------------------------
-        // Element Selectors
+        // Helpers
         // -------------------------------------------
         const $ = (selector) => document.querySelector(selector);
         
@@ -258,29 +212,22 @@
             closeInsightsBtn: $('#close-insights-btn'),
         };
 
-        // -------------------------------------------
-        // Helper: Clean and Parse JSON (FIXED)
-        // -------------------------------------------
+        // --- IMPROVED JSON CLEANING FUNCTION (Fixes Insight Error) ---
         function cleanAndParseJSON(jsonString) {
             if (!jsonString) return null;
             try {
                 return JSON.parse(jsonString);
             } catch (e) {
-                // Cleaning Fallback
-                let cleaned = jsonString.toString()
-                    .replace(/```json/gi, '')
-                    .replace(/```/g, '')
-                    .trim();
+                // Remove everything before the first { and after the last }
+                const firstBrace = jsonString.indexOf('{');
+                const lastBrace = jsonString.lastIndexOf('}');
                 
-                const firstBrace = cleaned.indexOf('{');
-                const lastBrace = cleaned.lastIndexOf('}');
-
                 if (firstBrace !== -1 && lastBrace !== -1) {
-                    cleaned = cleaned.substring(firstBrace, lastBrace + 1);
+                    const cleanString = jsonString.substring(firstBrace, lastBrace + 1);
                     try {
-                        return JSON.parse(cleaned);
+                        return JSON.parse(cleanString);
                     } catch (innerError) {
-                        return null;
+                        return null; // Silent failure
                     }
                 }
                 return null;
@@ -288,27 +235,18 @@
         }
 
         // -------------------------------------------
-        // Initial Setup
+        // Init
         // -------------------------------------------
         document.addEventListener('DOMContentLoaded', () => {
-            if (apiKey) {
-                elements.apiKeyInput.value = apiKey;
-                switchScreen('topic');
-            } else {
-                switchScreen('apiKey');
-            }
+            if (apiKey) { elements.apiKeyInput.value = apiKey; switchScreen('topic'); } 
+            else { switchScreen('apiKey'); }
             setupAudioContext();
             setupEventListeners();
             autoResizeTextarea(elements.messageInput);
         });
 
         function setupAudioContext() {
-            if (audioContext) return;
-            try {
-                audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            } catch (e) {
-                console.error("Audio API error", e);
-            }
+            try { audioContext = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { console.error("Audio API error", e); }
         }
         
         function setupEventListeners() {
@@ -319,15 +257,9 @@
             elements.exportButton.addEventListener('click', handleExportSession);
             elements.importInput.addEventListener('change', handleImportSession);
             elements.insightToastClose.addEventListener('click', hideInsightToast);
-            elements.toggleInsightsBtn.addEventListener('click', () => {
-                elements.insightsSidebar.classList.remove('-translate-x-full');
-            });
-            elements.closeInsightsBtn.addEventListener('click', () => {
-                elements.insightsSidebar.classList.add('-translate-x-full');
-            });
+            elements.toggleInsightsBtn.addEventListener('click', () => { elements.insightsSidebar.classList.remove('-translate-x-full'); });
+            elements.closeInsightsBtn.addEventListener('click', () => { elements.insightsSidebar.classList.add('-translate-x-full'); });
             elements.chatContainer.addEventListener('click', handleChatBubbleClicks);
-            
-            // Close sidebar when clicking outside on mobile
             elements.chatContainer.addEventListener('click', () => {
                 if (!elements.insightsSidebar.classList.contains('-translate-x-full') && window.innerWidth < 768) {
                     elements.insightsSidebar.classList.add('-translate-x-full');
@@ -336,20 +268,13 @@
         }
         
         // -------------------------------------------
-        // Screen & UI Management
+        // UI Logic
         // -------------------------------------------
-        
         function switchScreen(screenName) {
-            Object.values(screens).forEach(screen => {
-                screen.classList.add('hidden');
-                screen.classList.remove('flex');
-            });
-            
+            Object.values(screens).forEach(screen => { screen.classList.add('hidden'); screen.classList.remove('flex'); });
             if (screens[screenName]) {
                 screens[screenName].classList.remove('hidden');
                 screens[screenName].classList.add('flex');
-                
-                // Special handling for Main Chat to ensure full height
                 if(screenName === 'mainChat') {
                     document.body.classList.remove('items-center', 'justify-center');
                     document.body.classList.add('items-start', 'justify-start', 'bg-gray-900');
@@ -360,10 +285,7 @@
         }
         
         function autoResizeTextarea(textarea) {
-            const adjustHeight = () => {
-                textarea.style.height = 'auto';
-                textarea.style.height = `${Math.min(textarea.scrollHeight, 150)}px`;
-            };
+            const adjustHeight = () => { textarea.style.height = 'auto'; textarea.style.height = `${Math.min(textarea.scrollHeight, 150)}px`; };
             textarea.addEventListener('input', adjustHeight);
             adjustHeight();
         }
@@ -381,23 +303,10 @@
             if (textElement && text) textElement.textContent = text;
             if(button === elements.sendButton) elements.sendIcon.classList.remove('hidden');
         }
-
-        function showButtonLoading(button, loader, iconContainer) {
-            button.disabled = true;
-            loader.classList.remove('hidden');
-            if (iconContainer) iconContainer.classList.add('hidden');
-        }
-
-        function hideButtonLoading(button, loader, iconContainer) {
-            button.disabled = false;
-            loader.classList.add('hidden');
-            if (iconContainer) iconContainer.classList.remove('hidden');
-        }
         
-        function showError(message) {
-            console.error(message);
-            alert(`خطا: ${message}`);
-        }
+        function showButtonLoading(button, loader, iconContainer) { button.disabled = true; loader.classList.remove('hidden'); if (iconContainer) iconContainer.classList.add('hidden'); }
+        function hideButtonLoading(button, loader, iconContainer) { button.disabled = false; loader.classList.add('hidden'); if (iconContainer) iconContainer.classList.remove('hidden'); }
+        function showError(message) { console.error(message); alert(`خطا: ${message}`); }
         
         function showInsightToast(title) {
             elements.insightToastText.textContent = title;
@@ -409,32 +318,21 @@
         function hideInsightToast() {
             elements.insightToast.classList.remove('toast-slide-in');
             elements.insightToast.classList.add('toast-slide-out');
-            setTimeout(() => {
-                elements.insightToast.classList.add('hidden');
-            }, 500);
+            setTimeout(() => { elements.insightToast.classList.add('hidden'); }, 500);
         }
 
         // -------------------------------------------
-        // Logic Handlers
+        // Core Logic
         // -------------------------------------------
-
         function handleApiKeySubmit() {
             const key = elements.apiKeyInput.value.trim();
-            if (key) {
-                apiKey = key;
-                localStorage.setItem('gemini_api_key', key);
-                switchScreen('topic');
-            } else {
-                showError("API Key نمی‌تواند خالی باشد.");
-            }
+            if (key) { apiKey = key; localStorage.setItem('gemini_api_key', key); switchScreen('topic'); } 
+            else { showError("API Key نمی‌تواند خالی باشد."); }
         }
 
         async function handleTopicSubmit() {
             const topic = elements.topicInput.value.trim();
-            if (!topic) {
-                showError("لطفاً یک موضوع وارد کنید.");
-                return;
-            }
+            if (!topic) { showError("لطفاً یک موضوع وارد کنید."); return; }
 
             showLoading(elements.topicSubmit, elements.topicLoader, elements.topicSubmitText, "در حال پردازش...");
             elements.loadingOverlay.classList.remove('hidden');
@@ -444,72 +342,46 @@
                 const personaJSON = await generatePersona(topic);
                 const personaData = cleanAndParseJSON(personaJSON);
                 
-                if (!personaData || !personaData.personaName) throw new Error("خطا w formacie odpowiedzi AI");
+                if (!personaData || !personaData.personaName) throw new Error("Format Error");
 
                 currentPersona = personaData.personaName;
                 systemPrompt = personaData.systemPrompt;
-                
                 elements.personaNameDisplay.textContent = currentPersona;
                 
-                const greetingMessage = {
-                    id: crypto.randomUUID(),
-                    role: 'model',
-                    text: personaData.greeting,
-                };
-                
+                const greetingMessage = { id: crypto.randomUUID(), role: 'model', text: personaData.greeting };
                 chatHistory.push({ role: 'model', parts: [{ text: greetingMessage.text }] });
                 
-                messageStates[greetingMessage.id] = {
-                    text: greetingMessage.text,
-                    originalLang: 'en',
-                    translatedFa: null,
-                    translatedEn: null
-                };
-
+                messageStates[greetingMessage.id] = { text: greetingMessage.text, originalLang: 'en', translatedFa: null, translatedEn: null };
                 renderMessage(greetingMessage);
                 switchScreen('mainChat');
                 
             } catch (error) {
-                console.error("Error generating persona:", error);
-                showError(`خطا: ${error.message}`);
+                console.error("Error:", error); showError(`خطا: ${error.message}`);
             } finally {
                 hideLoading(elements.topicSubmit, elements.topicLoader, elements.topicSubmitText, "شروع جلسه و تعیین نقش");
                 elements.loadingOverlay.classList.add('hidden');
             }
         }
 
-        function handleTextareaKeydown(e) {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                handleSendMessage();
-            }
-        }
+        function handleTextareaKeydown(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSendMessage(); } }
 
         async function handleSendMessage() {
             const userText = elements.messageInput.value.trim();
             if (!userText) return;
 
             showLoading(elements.sendButton, elements.chatLoader);
-            elements.messageInput.value = '';
-            elements.messageInput.style.height = 'auto';
+            elements.messageInput.value = ''; elements.messageInput.style.height = 'auto';
 
-            const userMessage = {
-                id: crypto.randomUUID(),
-                role: 'user',
-                text: userText,
-            };
+            const userMessage = { id: crypto.randomUUID(), role: 'user', text: userText };
             chatHistory.push({ role: 'user', parts: [{ text: userText }] });
             renderMessage(userMessage);
 
-            try {
-                await processModelResponse(userText);
-            } catch (error) {
-                console.error("Error in chat pipeline:", error);
+            try { await processModelResponse(userText); } 
+            catch (error) { 
+                console.error("Pipeline Error:", error); 
                 chatHistory.pop(); 
-                renderErrorMessage("خطا در ارتباط. لطفا مجددا تلاش کنید.");
-            } finally {
-                hideLoading(elements.sendButton, elements.chatLoader);
-            }
+                renderErrorMessage("خطا در ارتباط. لطفا مجددا تلاش کنید."); 
+            } finally { hideLoading(elements.sendButton, elements.chatLoader); }
         }
         
         async function processModelResponse(userText) {
@@ -520,12 +392,7 @@
                 getInsight(userText)
             ]);
             
-            // Process Chat
-            const modelMessage = {
-                id: crypto.randomUUID(),
-                role: 'model',
-                text: modelResponse,
-            };
+            const modelMessage = { id: crypto.randomUUID(), role: 'model', text: modelResponse };
             chatHistory.push({ role: 'model', parts: [{ text: modelResponse }] });
             
             const responseLang = isFarsi(modelResponse) ? 'fa' : 'en';
@@ -535,32 +402,28 @@
                 translatedFa: (responseLang === 'fa') ? modelResponse : null,
                 translatedEn: (responseLang === 'en') ? modelResponse : null
             };
-            
             renderMessage(modelMessage);
 
-            // Process Insight (Fixed)
+            // --- FIXED INSIGHT LOGIC (Silent Fail) ---
             const insight = cleanAndParseJSON(insightJSON);
-            
             if (insight && insight.title && insight.title !== 'NO_INSIGHT' && insight.description) {
                 insights.push(insight); 
                 renderNewInsight(insight); 
                 showInsightToast(insight.title); 
             }
+            // ELSE: Do nothing. Do not show error.
         }
 
         async function handleChatBubbleClicks(e) {
             const button = e.target.closest('button');
             if (!button) return;
-            
             const messageId = button.dataset.messageId;
             const action = button.dataset.action;
             const messageEl = $(`#msg-${messageId}`);
             if (!messageEl) return;
-            
             const textEl = messageEl.querySelector('.message-content');
             
             if (action === 'translate-fa' || action === 'translate-en' || action === 'untranslate') {
-                // Translation Logic
                 const state = messageStates[messageId];
                 if (!state) return;
                 const loader = button.querySelector('.spinner');
@@ -570,27 +433,19 @@
                 try {
                     if (action === 'translate-fa') {
                         if (!state.translatedFa) state.translatedFa = await getTranslation(state.text, 'en-to-fa');
-                        textEl.textContent = state.translatedFa;
-                        textEl.dir = 'rtl';
-                        button.dataset.action = 'untranslate';
-                        iconContainer.innerHTML = getTranslateButtonIcon('en');
+                        textEl.textContent = state.translatedFa; textEl.dir = 'rtl';
+                        button.dataset.action = 'untranslate'; iconContainer.innerHTML = getTranslateButtonIcon('en');
                     } else if (action === 'translate-en') {
                          if (!state.translatedEn) state.translatedEn = await getTranslation(state.text, 'fa-to-en');
-                        textEl.textContent = state.translatedEn;
-                        textEl.dir = 'ltr';
-                        button.dataset.action = 'untranslate';
-                        iconContainer.innerHTML = getTranslateButtonIcon('fa');
+                        textEl.textContent = state.translatedEn; textEl.dir = 'ltr';
+                        button.dataset.action = 'untranslate'; iconContainer.innerHTML = getTranslateButtonIcon('fa');
                     } else {
                         textEl.textContent = state.text;
                         textEl.dir = state.originalLang === 'fa' ? 'rtl' : 'ltr';
                         button.dataset.action = state.originalLang === 'fa' ? 'translate-en' : 'translate-fa';
                         iconContainer.innerHTML = getTranslateButtonIcon(state.originalLang === 'fa' ? 'en' : 'fa');
                     }
-                } catch (err) {
-                    showError("Translation failed.");
-                } finally {
-                    hideButtonLoading(button, loader, iconContainer);
-                }
+                } catch (err) { showError("Translation failed."); } finally { hideButtonLoading(button, loader, iconContainer); }
             } else if (action === 'copy') {
                 navigator.clipboard.writeText(textEl.textContent).then(() => {
                     const icon = button.querySelector('.copy-icon-container');
@@ -604,79 +459,48 @@
         // -------------------------------------------
         // API Calls
         // -------------------------------------------
-        
         async function callGeminiApi(model, payload, retries = 2) {
             const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
-            
             for (let i = 0; i < retries; i++) {
                 try {
-                    const response = await fetch(apiUrl, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
+                    const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
                     if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
                     const result = await response.json();
-                    
-                    if (payload.generationConfig?.responseMimeType === "application/json") {
-                        return result.candidates[0].content.parts[0].text;
-                    }
                     return result.candidates[0].content.parts[0].text; 
-                } catch (error) {
-                    if (i === retries - 1) throw error;
-                    await new Promise(r => setTimeout(r, 1000));
-                }
+                } catch (error) { if (i === retries - 1) throw error; await new Promise(r => setTimeout(r, 1000)); }
             }
         }
 
         async function generatePersona(topic) {
-            const personaSystemPrompt = `You are a 'Persona Router'. A user will provide a topic. Your job is to select the *single* most relevant expert persona from this list: Dr. Andrew Huberman, Dr. Jordan Peterson, Esther Perel, Dr. Gabor Maté, Brené Brown, Dr. Nicole LePera, or 'Compassionate Therapist'.
-            You MUST respond *only* with a JSON object:
-            {
-              "personaName": "Full Name",
-              "greeting": "Warm greeting in English related to topic.",
-              "systemPrompt": "System instructions. 1. Think like persona. 2. Simple, warm tone (no jargon). 3. Detect language. 4. Respond in User's language."
-            }`;
-
-            const payload = {
-                contents: [{ parts: [{ text: `Topic: ${topic}` }] }],
-                systemInstruction: { parts: [{ text: personaSystemPrompt }] },
-                generationConfig: { responseMimeType: "application/json", temperature: 0.5 }
-            };
+            const personaSystemPrompt = `You are a 'Persona Router'. Select expert: Dr. Andrew Huberman, Dr. Jordan Peterson, Esther Perel, Dr. Gabor Maté, Brené Brown, Dr. Nicole LePera, or 'Compassionate Therapist'. 
+            Respond ONLY JSON: {"personaName": "...", "greeting": "...", "systemPrompt": "..."}`;
+            const payload = { contents: [{ parts: [{ text: `Topic: ${topic}` }] }], systemInstruction: { parts: [{ text: personaSystemPrompt }] }, generationConfig: { responseMimeType: "application/json", temperature: 0.5 } };
             return await callGeminiApi('gemini-2.5-flash-preview-09-2025', payload);
         }
 
         async function getGeminiResponse() {
-            const payload = {
-                contents: chatHistory,
-                systemInstruction: { parts: [{ text: systemPrompt }] },
-                generationConfig: { temperature: 0.8, maxOutputTokens: 1024 }
-            };
+            const payload = { contents: chatHistory, systemInstruction: { parts: [{ text: systemPrompt }] }, generationConfig: { temperature: 0.8, maxOutputTokens: 1024 } };
             return await callGeminiApi('gemini-2.5-flash-preview-09-2025', payload);
         }
 
         async function getInsight(userText) {
+            // STRICT prompt to prevent markdown text
             const payload = {
-                contents: [{ parts: [{ text: `User said: ${userText}\nExtract insight JSON (title, description) or NO_INSIGHT.` }] }],
-                systemInstruction: { parts: [{ text: "Extract psychological insight as JSON. If none, return {title:'NO_INSIGHT', description:''}. English only." }] },
+                contents: [{ parts: [{ text: `User said: ${userText}\nExtract insight JSON (title, description) or {"title":"NO_INSIGHT","description":""}. NO MARKDOWN.` }] }],
+                systemInstruction: { parts: [{ text: "Return strictly RAW JSON object. No ```json blocks." }] },
                 generationConfig: { responseMimeType: "application/json", temperature: 0.2 }
             };
             return await callGeminiApi('gemini-2.5-flash-preview-09-2025', payload);
         }
         
         async function getTranslation(text, dir) {
-             const prompt = dir === 'fa-to-en' ? "Translate to English." : "Translate to warm, natural Persian.";
-             const payload = {
-                contents: [{ parts: [{ text: `Task: ${prompt}\nText: ${text}` }] }],
-                generationConfig: { temperature: 0.1 }
-            };
+             const payload = { contents: [{ parts: [{ text: `Translate to ${dir === 'fa-to-en' ? 'English' : 'Natural Persian'}: ${text}` }] }], generationConfig: { temperature: 0.1 } };
             return await callGeminiApi('gemini-2.5-flash-preview-09-2025', payload);
         }
 
         // -------------------------------------------
-        // Rendering Helpers
+        // Rendering
         // -------------------------------------------
-
         function renderMessage(message) {
             const { id, role, text } = message;
             const isUser = role === 'user';
@@ -687,9 +511,7 @@
                     <span class="translate-icon-container">${getTranslateButtonIcon(isFarsi(text) ? 'en' : 'fa')}</span>
                     <div class="spinner !w-3 !h-3 hidden"></div>
                 </button>
-                <button data-action="copy" data-message-id="${id}" class="chat-bubble-button text-xs">
-                    <span class="copy-icon-container">${getCopyButtonIcon()}</span>
-                </button>
+                <button data-action="copy" data-message-id="${id}" class="chat-bubble-button text-xs"><span class="copy-icon-container">${getCopyButtonIcon()}</span></button>
             ` : '';
 
             const html = `
@@ -698,9 +520,7 @@
                         <div class="${bubbleClasses} p-3 sm:p-4 rounded-2xl shadow-md w-full">
                             <p class="message-content text-white whitespace-pre-wrap break-words leading-relaxed text-sm sm:text-base" dir="${langDir}">${text}</p>
                         </div>
-                        <div class="flex items-center space-x-2 space-x-reverse mt-1 px-1 opacity-70 hover:opacity-100 transition-opacity">
-                            ${buttonsHtml}
-                        </div>
+                        <div class="flex items-center space-x-2 space-x-reverse mt-1 px-1 opacity-70 hover:opacity-100 transition-opacity">${buttonsHtml}</div>
                     </div>
                 </div>`;
             elements.chatContainer.insertAdjacentHTML('beforeend', html);
@@ -720,27 +540,64 @@
 
         function isFarsi(text) { return /[\u0600-\u06FF]/.test(text); }
         function getTranslateButtonIcon(lang) { return lang === 'fa' ? '<span>FA</span>' : '<span>EN</span>'; }
-        function getCopyButtonIcon(state = 'copy') {
-             return state === 'copy' 
-             ? `<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" /></svg>` 
-             : `<svg class="w-4 h-4 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>`;
-        }
+        function getCopyButtonIcon(state = 'copy') { return state === 'copy' ? `<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" /></svg>` : `<svg class="w-4 h-4 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>`; }
         
-        // Import/Export Logic Simplified
         async function handleExportSession() {
              const blob = new Blob([JSON.stringify({persona: currentPersona, systemPrompt, chatHistory, insights})], {type:'application/json'});
              const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'session.json'; a.click();
         }
+
+        // --- FIXED IMPORT LOGIC (Clean Slate + Welcome Back) ---
         function handleImportSession(e) {
             const reader = new FileReader();
-            reader.onload = (ev) => {
-                const data = JSON.parse(ev.target.result);
-                currentPersona = data.persona; systemPrompt = data.systemPrompt; chatHistory = data.chatHistory; insights = data.insights || [];
-                elements.personaNameDisplay.textContent = currentPersona;
-                elements.chatContainer.innerHTML = ''; elements.insightsContainer.innerHTML = '';
-                insights.forEach(renderNewInsight);
-                chatHistory.forEach(msg => { if(msg.role === 'model') renderMessage({id: crypto.randomUUID(), role:'model', text: msg.parts[0].text}); else renderMessage({id:crypto.randomUUID(), role:'user', text: msg.parts[0].text}); });
-                switchScreen('mainChat');
+            reader.onload = async (ev) => {
+                try {
+                    const data = JSON.parse(ev.target.result);
+                    currentPersona = data.persona; 
+                    systemPrompt = data.systemPrompt; 
+                    chatHistory = data.chatHistory || []; 
+                    insights = data.insights || [];
+                    
+                    elements.personaNameDisplay.textContent = currentPersona;
+                    
+                    // 1. CLEAR UI (Do not render old messages)
+                    elements.chatContainer.innerHTML = ''; 
+                    elements.insightsContainer.innerHTML = '';
+                    messageStates = {};
+
+                    // 2. Render Insights (Context is good)
+                    if (insights.length) insights.forEach(renderNewInsight);
+                    else elements.insightsContainer.innerHTML = '<p class="text-gray-500 text-sm text-center py-10 italic">هنوز بینشی استخراج نشده است.<br>گفتگو را شروع کنید.</p>';
+
+                    switchScreen('mainChat');
+                    
+                    // 3. GENERATE WELCOME BACK MESSAGE based on history
+                    elements.loadingText.textContent = "در حال بازیابی حافظه و شروع مجدد...";
+                    elements.loadingOverlay.classList.remove('hidden');
+
+                    // Temporary system prompt to generate greeting
+                    chatHistory.push({
+                        role: 'user',
+                        parts: [{ text: "SYSTEM_COMMAND: The user just imported our previous session file. Do NOT summarize the entire history. Just say a warm 'Welcome back', briefly mention the LAST topic we were discussing to show you remember, and ask how they want to proceed. Respond in the language of the previous conversation." }]
+                    });
+
+                    const welcomeText = await getGeminiResponse();
+                    
+                    // Remove the system command from history to keep it clean, but keep the model's response
+                    // Actually, keeping the model response in history is necessary for context
+                    
+                    const welcomeMsg = { id: crypto.randomUUID(), role: 'model', text: welcomeText };
+                    chatHistory.push({ role: 'model', parts: [{ text: welcomeText }] });
+                    
+                    messageStates[welcomeMsg.id] = { text: welcomeText, originalLang: isFarsi(welcomeText)?'fa':'en', translatedFa:null, translatedEn:null };
+                    renderMessage(welcomeMsg);
+
+                } catch (error) {
+                    showError("خطا wczytywania pliku."); console.error(error);
+                } finally {
+                    elements.loadingOverlay.classList.add('hidden');
+                    e.target.value = null;
+                }
             };
             reader.readAsText(e.target.files[0]);
         }
